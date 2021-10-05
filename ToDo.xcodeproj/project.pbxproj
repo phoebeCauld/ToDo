@@ -16,7 +16,7 @@
 		2DF60E632708AED700592398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF60E612708AED700592398 /* LaunchScreen.storyboard */; };
 		2DF60E6D2708AF5A00592398 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E6C2708AF5A00592398 /* ConfigView.swift */; };
 		2DF60E6F2708B1B100592398 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E6E2708B1B100592398 /* Constants.swift */; };
-		2DF60E722709CB2500592398 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E712709CB2500592398 /* Item.swift */; };
+		2DF60E75270B2C9900592398 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E74270B2C9900592398 /* SearchBarExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		2DF60E642708AED700592398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DF60E6C2708AF5A00592398 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		2DF60E6E2708B1B100592398 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		2DF60E712709CB2500592398 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2DF60E74270B2C9900592398 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,6 @@
 				2DF60E6A2708AF2700592398 /* Controller */,
 				2DF60E732709CC3D00592398 /* Supporting files */,
 				2DF60E642708AED700592398 /* Info.plist */,
-				2DF60E5C2708AED600592398 /* ToDo.xcdatamodeld */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -80,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF60E572708AED600592398 /* TodoListViewController.swift */,
+				2DF60E74270B2C9900592398 /* SearchBarExtension.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -97,7 +97,7 @@
 		2DF60E702709CB1200592398 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2DF60E712709CB2500592398 /* Item.swift */,
+				2DF60E5C2708AED600592398 /* ToDo.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,13 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF60E722709CB2500592398 /* Item.swift in Sources */,
 				2DF60E582708AED600592398 /* TodoListViewController.swift in Sources */,
 				2DF60E6D2708AF5A00592398 /* ConfigView.swift in Sources */,
 				2DF60E542708AED600592398 /* AppDelegate.swift in Sources */,
 				2DF60E562708AED600592398 /* SceneDelegate.swift in Sources */,
 				2DF60E5E2708AED600592398 /* ToDo.xcdatamodeld in Sources */,
 				2DF60E6F2708B1B100592398 /* Constants.swift in Sources */,
+				2DF60E75270B2C9900592398 /* SearchBarExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
