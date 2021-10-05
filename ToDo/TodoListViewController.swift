@@ -6,22 +6,24 @@
 //
 
 import UIKit
-
+import CoreData
 class TodoListViewController: UITableViewController {
-    
+
     var configTV = ConfigTableViewController()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first?.appendingPathComponent("Item.plist")
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var list = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.cellIdentifier)
         configTV.navigationSetup(self)
+        configTV.searchField.searchBar.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        
         loadItems()
     }
     
-// Actions methods
+//MARK: - Actions methods
     @objc func addButtonPressed(){
         let alert = UIAlertController(title: "Add New Task", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
@@ -31,8 +33,9 @@ class TodoListViewController: UITableViewController {
             let textField = alert.textFields?.first
             if let newTask = textField?.text {
                 if newTask != "" {
-                    let newItem = Item()
+                    let newItem = Item(context: self.context)
                     newItem.title = newTask
+                    newItem.done = false
                     self.list.append(newItem)
                     self.saveItem()
                     self.tableView.reloadData()
@@ -45,32 +48,25 @@ class TodoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-// Save items method
+//MARK: - Save items method
     func saveItem(){
-        let encoder = PropertyListEncoder()
         do {
-            let data =  try encoder.encode(list)
-            if let dataPath = dataFilePath {
-                try data.write(to: dataPath)
-            }
+            try context.save()
         } catch let error as NSError {
-            print(error.localizedDescription)
+            print("error saving data \(error.localizedDescription)")
         }
     }
-    
-    func loadItems(){
-        let decoder = PropertyListDecoder()
-        if let dataPath = dataFilePath{
-            do {
-                let data = try Data(contentsOf: dataPath)
-                list = try decoder.decode([Item].self, from: data)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
+//MARK: - Load items method
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()){
+        do {
+            list = try context.fetch(request)
+        } catch let error as NSError {
+            print("error fetching data from context \(error.localizedDescription)")
         }
+        tableView.reloadData()
     }
     
-// DataSourse and Delegate methods
+//MARK: - DataSourse and Delegate methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
@@ -91,4 +87,7 @@ class TodoListViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+
+
+
 
