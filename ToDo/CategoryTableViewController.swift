@@ -85,8 +85,6 @@ class CategoryTableViewController: UITableViewController {
                     newCategory.name = text
                     self.categoryList.append(newCategory)
                     self.saveItems()
-                } else {
-                    print("empty field")
                 }
             }
         }
