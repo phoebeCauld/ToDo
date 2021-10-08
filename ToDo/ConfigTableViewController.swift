@@ -32,15 +32,12 @@ struct ConfigTableViewController {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 25, weight: .black)]
-//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.backgroundColor = K.Colors.navBarColor
         tableView.navigationController?.navigationBar.standardAppearance = navBarAppearance
         tableView.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         tableView.navigationController?.navigationBar.tintColor = .white
+//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 //        tableView.navigationController?.navigationBar.prefersLargeTitles = true
 //        tableView.navigationController?.navigationBar.barStyle = .black
-
     }
-
-
 }
