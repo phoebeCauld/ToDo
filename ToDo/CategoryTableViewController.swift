@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryTableViewController: UITableViewController {
-
+    let realm = try! Realm()
     let config = ConfigTableViewController()
-    var categoryList = [Category]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var categoryList: Results<Category>?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +29,14 @@ class CategoryTableViewController: UITableViewController {
     // MARK: - Table view data source and delegate methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryList.count
+        return categoryList?.count ?? 1
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.categoryCellIdentifier, for: indexPath) as! CategoryCell
-        cell.todoTextLabel.text = categoryList[indexPath.row].name
-        if let taskCount = categoryList[indexPath.row].items?.count {
+        cell.todoTextLabel.text = categoryList?[indexPath.row].name ?? "dont have categories yet"
+        if let taskCount = categoryList?[indexPath.row].items.count {
             if taskCount != 0 {
             cell.tasksCountLabel.text = "You have \(taskCount) task"
             } else {
@@ -48,7 +48,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tasksVC = TodoListViewController()
-        tasksVC.selectedCategory = categoryList[indexPath.row]
+        tasksVC.selectedCategory = categoryList?[indexPath.row]
         navigationController?.pushViewController(tasksVC, animated: true)
     }
     
@@ -57,16 +57,17 @@ class CategoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if categoryList[indexPath.row].items?.count == 0 {
-            context.delete(categoryList[indexPath.row])
-            categoryList.remove(at: indexPath.row)
-            saveItems()
-        } else {
-            let alert = UIAlertController(title: "You still have unfinished tasks!", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+        if let currentCategory = categoryList?[indexPath.row] {
+            if currentCategory.items.count  == 0 {
+                delete(item: currentCategory)
+            } else {
+                let alert = UIAlertController(title: "You still have unfinished tasks!", message: "", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            }
         }
+        tableView.reloadData()
         
     }
 
@@ -81,10 +82,9 @@ class CategoryTableViewController: UITableViewController {
             let textField = alert.textFields?.first
             if let text = textField?.text {
                 if text != "" {
-                    let newCategory = Category(context: self.context)
+                    let newCategory = Category()
                     newCategory.name = text
-                    self.categoryList.append(newCategory)
-                    self.saveItems()
+                    self.save(category: newCategory)
                 }
             }
         }
@@ -92,27 +92,34 @@ class CategoryTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - CoreData methods
+    // MARK: - Load, Save and Delete methods
     
-    func saveItems(){
+    func save(category: Category){
         do {
-            try context.save()
+            try realm.write{
+                realm.add(category)
+            }
         } catch let error as NSError {
             print("failed with save category: \(error.localizedDescription)")
         }
         tableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<Category> = Category.fetchRequest()){
-        do {
-            categoryList =  try context.fetch(request)
-        } catch let error as NSError {
-            print("failed with loading data: \(error.localizedDescription)")
-        }
+    
+    func loadItems(){
+        categoryList = realm.objects(Category.self)
         tableView.reloadData()
     }
-
-    // MARK: - Navigation
+    
+    func delete(item: Category){
+        do {
+            try realm.write{
+                realm.delete(item)
+            }
+        } catch let error as NSError {
+            print("error saving data \(error.localizedDescription)")
+        }
+    }
 
 
 }

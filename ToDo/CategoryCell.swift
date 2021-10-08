@@ -61,12 +61,9 @@ class CategoryCell: UITableViewCell {
         let textStack = UIStackView(arrangedSubviews: [todoTextLabel,tasksCountLabel])
         textStack.alignment = .leading
         textStack.axis = .vertical
-//      textStack.spacing = 10
         textStack.translatesAutoresizingMaskIntoConstraints = false
         cellView.addSubview(textStack)
         view.addSubview(cellStack)
-//        cellView.addSubview(todoTextLabel)
-//        view.addSubview(cellView)
         NSLayoutConstraint.activate([
             checkMark.widthAnchor.constraint(equalToConstant: 30),
             checkMark.heightAnchor.constraint(equalToConstant: 30),
@@ -91,8 +88,6 @@ class CategoryCell: UITableViewCell {
                                                       constant: 10),
             todoTextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor,
                                                        constant: -10)
-            
         ])
     }
-
 }

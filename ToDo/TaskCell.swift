@@ -73,10 +73,8 @@ class TaskCell: UITableViewCell {
             todoTextLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor,
                                                       constant: 10),
             todoTextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor,
-                                                       constant: -10)
-            
+                                                       constant: -10)            
         ])
     }
-
 }
 
