@@ -6,6 +6,4 @@ target 'ToDo' do
 
   # Pods for ToDo
   pod 'RealmSwift', '~>10'
-    
-    
 end

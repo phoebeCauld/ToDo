@@ -8,27 +8,19 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
-    
-    let cellView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+
     let todoTextLabel: UILabel = {
        let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .black
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let checkMark: UIImageView = {
         let check = UIImageView()
-        check.image = UIImage(systemName: "circle")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        check.tintColor = .black
         check.contentMode = .scaleAspectFill
-        check.translatesAutoresizingMaskIntoConstraints = false
         return check
     }()
 
@@ -43,12 +35,11 @@ class TaskCell: UITableViewCell {
     }
     
     func setupCellView(_ view: UIView){
-        let cellStack = UIStackView(arrangedSubviews: [checkMark, cellView])
+        let cellStack = UIStackView(arrangedSubviews: [checkMark, todoTextLabel])
         cellStack.alignment = .center
         cellStack.axis = .horizontal
         cellStack.spacing = 10
         cellStack.translatesAutoresizingMaskIntoConstraints = false
-        cellView.addSubview(todoTextLabel)
         view.addSubview(cellStack)
         NSLayoutConstraint.activate([
             checkMark.widthAnchor.constraint(equalToConstant: 30),
@@ -62,18 +53,7 @@ class TaskCell: UITableViewCell {
                                                       constant: 10),
             cellStack.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                        constant: -10),
-            cellStack.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            
-            cellView.heightAnchor.constraint(equalTo: cellStack.heightAnchor),
-            todoTextLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            todoTextLabel.topAnchor.constraint(equalTo: cellView.topAnchor,
-                                                  constant: 10),
-            todoTextLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor,
-                                                     constant: -10),
-            todoTextLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor,
-                                                      constant: 10),
-            todoTextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor,
-                                                       constant: -10)            
+            cellStack.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
         ])
     }
 }

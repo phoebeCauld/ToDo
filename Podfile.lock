@@ -1,4 +1,7 @@
 PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Realm (10.17.0):
     - Realm/Headers (= 10.17.0)
   - Realm/Headers (10.17.0)
@@ -6,6 +9,7 @@ PODS:
     - Realm (= 10.17.0)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
   - RealmSwift (~> 10)
 
 SPEC REPOS:
@@ -13,10 +17,21 @@ SPEC REPOS:
     - Realm
     - RealmSwift
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :branch: swift5
+    :git: https://github.com/wowansm/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 96d52c36a45847fff60bcff7a58fec1e4bd7390b
+    :git: https://github.com/wowansm/Chameleon.git
+
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Realm: 9533276bd76f66aa2fd0d3ffe700c1f6023dcab6
   RealmSwift: 57f5d59aa29852587aad1e861989e7af139894b5
 
-PODFILE CHECKSUM: 17b99f656448e3be7b33b389a04261eb96b49241
+PODFILE CHECKSUM: 31bba89c6035afc2f2ef5f8cac8e2c9dab3daece
 
 COCOAPODS: 1.10.1

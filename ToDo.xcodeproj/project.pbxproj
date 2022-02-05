@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DBCD83B270F1DA2007D2806 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DBCD83A270F1DA2007D2806 /* Main.storyboard */; };
+		2D7FE51627AE8E71008395CB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FE51527AE8E71008395CB /* RealmManager.swift */; };
 		2DBCD843270F6D30007D2806 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBCD842270F6D30007D2806 /* Item.swift */; };
 		2DBCD845270F6D39007D2806 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBCD844270F6D39007D2806 /* Category.swift */; };
 		2DF60E542708AED600592398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E532708AED600592398 /* AppDelegate.swift */; };
@@ -15,7 +15,7 @@
 		2DF60E582708AED600592398 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E572708AED600592398 /* TodoListViewController.swift */; };
 		2DF60E602708AED700592398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF60E5F2708AED700592398 /* Assets.xcassets */; };
 		2DF60E632708AED700592398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF60E612708AED700592398 /* LaunchScreen.storyboard */; };
-		2DF60E6D2708AF5A00592398 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E6C2708AF5A00592398 /* ConfigTableViewController.swift */; };
+		2DF60E6D2708AF5A00592398 /* ConfigurationForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E6C2708AF5A00592398 /* ConfigurationForViewController.swift */; };
 		2DF60E6F2708B1B100592398 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E6E2708B1B100592398 /* Constants.swift */; };
 		2DF60E75270B2C9900592398 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E74270B2C9900592398 /* SearchBarExtension.swift */; };
 		2DF60E77270C554F00592398 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF60E76270C554F00592398 /* CategoryTableViewController.swift */; };
@@ -26,7 +26,7 @@
 
 /* Begin PBXFileReference section */
 		125F2E161B5F2582AAFDBBCC /* Pods_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DBCD83A270F1DA2007D2806 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2D7FE51527AE8E71008395CB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		2DBCD842270F6D30007D2806 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2DBCD844270F6D39007D2806 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2DF60E502708AED600592398 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,7 +36,7 @@
 		2DF60E5F2708AED700592398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DF60E622708AED700592398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DF60E642708AED700592398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2DF60E6C2708AF5A00592398 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
+		2DF60E6C2708AF5A00592398 /* ConfigurationForViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationForViewController.swift; sourceTree = "<group>"; };
 		2DF60E6E2708B1B100592398 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DF60E74270B2C9900592398 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		2DF60E76270C554F00592398 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D7FE51427AE8785008395CB /* CategoryController */ = {
+			isa = PBXGroup;
+			children = (
+				2DF60E76270C554F00592398 /* CategoryTableViewController.swift */,
+				2DF60E78270C799800592398 /* CategoryCell.swift */,
+			);
+			name = CategoryController;
+			sourceTree = "<group>";
+		};
 		2DF60E472708AED600592398 = {
 			isa = PBXGroup;
 			children = (
@@ -81,33 +90,32 @@
 			children = (
 				2DF60E532708AED600592398 /* AppDelegate.swift */,
 				2DF60E552708AED600592398 /* SceneDelegate.swift */,
+				2D7FE51527AE8E71008395CB /* RealmManager.swift */,
+				2DF60E732709CC3D00592398 /* Helpers */,
 				2DF60E702709CB1200592398 /* Data Model */,
+				2D7FE51427AE8785008395CB /* CategoryController */,
 				2DF60E6B2708AF3300592398 /* View */,
-				2DF60E6A2708AF2700592398 /* Controller */,
-				2DF60E732709CC3D00592398 /* Supporting files */,
+				2DF60E6A2708AF2700592398 /* ListController */,
 				2DF60E642708AED700592398 /* Info.plist */,
+				2DF60E5F2708AED700592398 /* Assets.xcassets */,
+				2DF60E612708AED700592398 /* LaunchScreen.storyboard */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
 		};
-		2DF60E6A2708AF2700592398 /* Controller */ = {
+		2DF60E6A2708AF2700592398 /* ListController */ = {
 			isa = PBXGroup;
 			children = (
-				2DF60E76270C554F00592398 /* CategoryTableViewController.swift */,
 				2DF60E572708AED600592398 /* TodoListViewController.swift */,
+				2DF60E7A270C822500592398 /* TaskCell.swift */,
 				2DF60E74270B2C9900592398 /* SearchBarExtension.swift */,
 			);
-			name = Controller;
+			name = ListController;
 			sourceTree = "<group>";
 		};
 		2DF60E6B2708AF3300592398 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2DF60E6C2708AF5A00592398 /* ConfigTableViewController.swift */,
-				2DF60E78270C799800592398 /* CategoryCell.swift */,
-				2DF60E7A270C822500592398 /* TaskCell.swift */,
-				2DF60E612708AED700592398 /* LaunchScreen.storyboard */,
-				2DBCD83A270F1DA2007D2806 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -121,13 +129,13 @@
 			name = "Data Model";
 			sourceTree = "<group>";
 		};
-		2DF60E732709CC3D00592398 /* Supporting files */ = {
+		2DF60E732709CC3D00592398 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2DF60E6C2708AF5A00592398 /* ConfigurationForViewController.swift */,
 				2DF60E6E2708B1B100592398 /* Constants.swift */,
-				2DF60E5F2708AED700592398 /* Assets.xcassets */,
 			);
-			path = "Supporting files";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CC6CCF7A7A4AD21D60758E8A /* Pods */ = {
@@ -184,7 +192,7 @@
 				};
 			};
 			buildConfigurationList = 2DF60E4B2708AED600592398 /* Build configuration list for PBXProject "ToDo" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -206,7 +214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DBCD83B270F1DA2007D2806 /* Main.storyboard in Resources */,
 				2DF60E632708AED700592398 /* LaunchScreen.storyboard in Resources */,
 				2DF60E602708AED700592398 /* Assets.xcassets in Resources */,
 			);
@@ -262,10 +269,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF60E582708AED600592398 /* TodoListViewController.swift in Sources */,
-				2DF60E6D2708AF5A00592398 /* ConfigTableViewController.swift in Sources */,
+				2DF60E6D2708AF5A00592398 /* ConfigurationForViewController.swift in Sources */,
 				2DF60E542708AED600592398 /* AppDelegate.swift in Sources */,
 				2DF60E77270C554F00592398 /* CategoryTableViewController.swift in Sources */,
 				2DF60E7B270C822500592398 /* TaskCell.swift in Sources */,
+				2D7FE51627AE8E71008395CB /* RealmManager.swift in Sources */,
 				2DF60E562708AED600592398 /* SceneDelegate.swift in Sources */,
 				2DBCD843270F6D30007D2806 /* Item.swift in Sources */,
 				2DF60E79270C799800592398 /* CategoryCell.swift in Sources */,

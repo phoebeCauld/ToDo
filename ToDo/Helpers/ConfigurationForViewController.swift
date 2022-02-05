@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ConfigTableViewController {
+struct ConfigurationForViewController {
     
     let searchField: UISearchController = {
        let sb = UISearchController(searchResultsController: nil)
@@ -29,15 +29,14 @@ struct ConfigTableViewController {
         tableView.view.backgroundColor = K.Colors.backgroundColor
         tableView.navigationItem.title = title
         tableView.tableView.separatorStyle = .none
+        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 25, weight: .black)]
         navBarAppearance.backgroundColor = K.Colors.navBarColor
         tableView.navigationController?.navigationBar.standardAppearance = navBarAppearance
         tableView.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        tableView.navigationController?.navigationBar.tintColor = .white
-//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//        tableView.navigationController?.navigationBar.prefersLargeTitles = true
-//        tableView.navigationController?.navigationBar.barStyle = .black
+        tableView.navigationController?.navigationBar.tintColor = .black
+        tableView.navigationController?.navigationBar.prefersLargeTitles = true
+        navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }

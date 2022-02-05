@@ -14,9 +14,9 @@ struct K {
     static let defaultsKey = "ToDoList"
     
     struct Colors {
-        static let backgroundColor = UIColor.white
-        static let cellColor = UIColor.gray
-        static let navBarColor = UIColor(red: 0.97, green: 0.76, blue: 0.57, alpha: 1.00)
+        static let backgroundColor: UIColor = .white
+        static let cellColor: UIColor = .gray
+        static let navBarColor: UIColor = .white
     }
     struct Images {
         static let doneMark = "checkmark.circle.fill"

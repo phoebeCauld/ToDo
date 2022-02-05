@@ -7,14 +7,16 @@
 
 import UIKit
 import RealmSwift
+
 class TodoListViewController: UITableViewController {
-    let realm = try! Realm()
-    var configTV = ConfigTableViewController()
-    var toDoItems: Results<Item>?
     
+    let realm = RealmManager()
+    var toDoItems: Results<Item>?
+    private var configTV = ConfigurationForViewController()
     var selectedCategory: Category? {
         didSet{
-            loadItems()
+            toDoItems = self.realm.loadTaskItems(selectedCategory)
+            self.tableView.reloadData()
         }
     }
     
@@ -29,11 +31,10 @@ class TodoListViewController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if toDoItems != nil {
-            for item in toDoItems! {
-                if item.done {
-                    delete(item: item)
-                }
+        guard let toDoItems = toDoItems else { return }
+        for item in toDoItems {
+            if item.done {
+                realm.delete(object: item)
             }
         }
     }
@@ -50,7 +51,7 @@ class TodoListViewController: UITableViewController {
                 if newTask != "" {
                     if let currentCategory = self.selectedCategory {
                         do {
-                            try self.realm.write{
+                            try self.realm.realm?.write{
                                 let newItem = Item()
                                 newItem.title = newTask
                                 newItem.dateCreated = Date()
@@ -64,25 +65,12 @@ class TodoListViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
+        let closeAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(closeAction)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: - delete items method
-    func delete(item: Item){
-        do {
-            try realm.write{
-                realm.delete(item)
-            }
-        } catch let error as NSError {
-            print("error saving data \(error.localizedDescription)")
-        }
-    }
-    //MARK: - Load items method
-    func loadItems(){
-        toDoItems = selectedCategory?.items.sorted(byKeyPath: "dateCreated", ascending: true)
-        tableView.reloadData()
-    }
     
     //MARK: - DataSourse and Delegate methods
     
@@ -94,15 +82,8 @@ class TodoListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! TaskCell
         if let item = toDoItems?[indexPath.row] {
             cell.todoTextLabel.text = item.title
-            if item.done {
-                cell.checkMark.image = UIImage(systemName: K.Images.doneMark)?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-            } else {
-                cell.checkMark.image = UIImage(systemName: K.Images.circle)?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-            }
-        } else {
-            cell.todoTextLabel.text = "No tasks added yet"
+            cell.checkMark.image = item.done ? UIImage(systemName: K.Images.doneMark)?.withTintColor(.black, renderingMode: .alwaysOriginal) : UIImage(systemName: K.Images.circle)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         }
-        
         return cell
     }
     
@@ -110,7 +91,7 @@ class TodoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if let currentItem = toDoItems?[indexPath.row]{
             do {
-                try realm.write{
+                try realm.realm?.write{
                     currentItem.done = !currentItem.done
                 }
             } catch {
@@ -126,7 +107,7 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if let selectedItem = toDoItems?[indexPath.row] {
-            delete(item: selectedItem)
+            realm.delete(object: selectedItem)
         }
         tableView.reloadData()
     }

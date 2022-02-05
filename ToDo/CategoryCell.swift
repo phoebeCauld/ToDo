@@ -8,23 +8,10 @@
 import UIKit
 
 class CategoryCell: UITableViewCell {
-    let cellView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let checkMark: UIImageView = {
-        let check = UIImageView()
-        check.image = UIImage(systemName: "circle")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-        check.contentMode = .scaleAspectFill
-        check.translatesAutoresizingMaskIntoConstraints = false
-        return check
-    }()
     
     let todoTextLabel: UILabel = {
        let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .black
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +31,6 @@ class CategoryCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCellView(contentView)
-        contentView.backgroundColor = K.Colors.backgroundColor
     }
     
     required init?(coder: NSCoder) {
@@ -52,42 +38,23 @@ class CategoryCell: UITableViewCell {
     }
     
     func setupCellView(_ view: UIView){
-        let cellStack = UIStackView(arrangedSubviews: [checkMark, cellView])
-        cellStack.alignment = .center
-        cellStack.axis = .horizontal
-        cellStack.spacing = 10
-        cellStack.translatesAutoresizingMaskIntoConstraints = false
-        
         let textStack = UIStackView(arrangedSubviews: [todoTextLabel,tasksCountLabel])
         textStack.alignment = .leading
         textStack.axis = .vertical
+        textStack.distribution = .fill
         textStack.translatesAutoresizingMaskIntoConstraints = false
-        cellView.addSubview(textStack)
-        view.addSubview(cellStack)
+        view.addSubview(textStack)
         NSLayoutConstraint.activate([
-            checkMark.widthAnchor.constraint(equalToConstant: 30),
-            checkMark.heightAnchor.constraint(equalToConstant: 30),
-            cellStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cellStack.topAnchor.constraint(equalTo: view.topAnchor,
-                                                  constant: 5),
-            cellStack.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                     constant: -5),
-            cellStack.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                      constant: 10),
-            cellStack.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                       constant: -10),
-            cellStack.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            
-            cellView.heightAnchor.constraint(equalTo: cellStack.heightAnchor),
-            todoTextLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            todoTextLabel.topAnchor.constraint(equalTo: cellView.topAnchor,
+            textStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            textStack.topAnchor.constraint(equalTo: view.topAnchor,
                                                   constant: 10),
-            todoTextLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor,
+            textStack.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                      constant: -10),
-            todoTextLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor,
-                                                      constant: 10),
-            todoTextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor,
-                                                       constant: -10)
+            textStack.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                      constant: 15),
+            textStack.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                       constant: -15),
+            textStack.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
         ])
     }
 }

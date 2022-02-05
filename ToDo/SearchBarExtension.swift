@@ -17,10 +17,12 @@ extension TodoListViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadItems()
+            toDoItems = self.realm.loadTaskItems(selectedCategory)
+            self.tableView.reloadData()
         }
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        loadItems()
+        toDoItems = self.realm.loadTaskItems(selectedCategory)
+        self.tableView.reloadData()
     }
 }
